@@ -40,6 +40,7 @@ const ZONES = [
   { id: "skills",     icon: "⚔", label: "SKILLS" },
   { id: "experience", icon: "★", label: "HISTORY" },
   { id: "projects",   icon: "◈", label: "QUESTS" },
+  { id: "awards",     icon: "★", label: "AWARDS" },
   { id: "contact",    icon: "✉", label: "GUILD" },
 ];
 
@@ -124,7 +125,7 @@ function DialogBox({ lines, speed = 40 }) {
   }, [lineIdx, charIdx, lines, speed]);
 
   return (
-    <PixelBox style={{ maxWidth: 640, margin: "0 auto" }}>
+    <PixelBox style={{ maxWidth: 640 }}>
       <div style={{ ...PX(8, C.accent), marginBottom: 14 }}>▶ SYSTEM MSG</div>
       <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: 16 }}>
         {lines.map((_, i) => (
@@ -202,24 +203,17 @@ function Nav({ active, setActive }) {
 function HeroSection() {
   const [mounted, setMounted] = useState(false);
   const [typed, setTyped] = useState("");
-  const fullText = "> initializing portfolio.exe...";
+  const fullText = "> portfolio.exe --load CHU_SONGRIM";
   const [typeDone, setTypeDone] = useState(false);
   const [showMain, setShowMain] = useState(false);
 
   useEffect(() => { setTimeout(() => setMounted(true), 100); }, []);
-
   useEffect(() => {
     if (!mounted) return;
     let i = 0;
     const t = setInterval(() => {
-      if (i <= fullText.length) {
-        setTyped(fullText.slice(0, i));
-        i++;
-      } else {
-        clearInterval(t);
-        setTypeDone(true);
-        setTimeout(() => setShowMain(true), 400);
-      }
+      if (i <= fullText.length) { setTyped(fullText.slice(0, i)); i++; }
+      else { clearInterval(t); setTypeDone(true); setTimeout(() => setShowMain(true), 400); }
     }, 45);
     return () => clearInterval(t);
   }, [mounted]);
@@ -227,9 +221,8 @@ function HeroSection() {
   return (
     <section id="home" style={{
       minHeight: "100vh", background: C.bg,
-      display: "flex", flexDirection: "column",
-      justifyContent: "center", alignItems: "center",
-      padding: "80px 2rem 2rem",
+      display: "flex", alignItems: "center",
+      padding: "30px 2rem 2rem",
       position: "relative", overflow: "hidden",
     }}>
       {/* Grid bg */}
@@ -240,76 +233,119 @@ function HeroSection() {
         mask: "radial-gradient(ellipse at center, black 30%, transparent 80%)",
       }} />
 
-      <div style={{ maxWidth: 800, width: "100%", position: "relative", zIndex: 1 }}>
-        {/* Terminal line */}
-        <div style={{ ...BODY(13, C.accent), fontFamily: "'Press Start 2P', monospace", fontSize: 11, marginBottom: 32, minHeight: 20 }}>
-          {typed}{!typeDone && <span style={{ animation: "blink 0.6s step-end infinite" }}>_</span>}
+      <div style={{ maxWidth: 1100, width: "100%", margin: "0 auto", position: "relative", zIndex: 1, display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 60, alignItems: "center" }}>
+
+        {/* ── LEFT ── */}
+        <div>
+          {/* Terminal */}
+          <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 11, color: C.accent, marginBottom: 32, minHeight: 20 }}>
+            {typed}{!typeDone && <span style={{ animation: "blink 0.6s step-end infinite" }}>_</span>}
+          </div>
+
+          <div style={{ opacity: showMain ? 1 : 0, transform: showMain ? "none" : "translateY(20px)", transition: "all 0.8s ease" }}>
+            {/* Intro line */}
+            <p style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 11, color: C.dim, margin: "0 0 20px", letterSpacing: "0.1em" }}>
+              PORTFOLIO / 2026
+            </p>
+
+            {/* Tagline */}
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 300, fontSize: "clamp(16px,2vw,22px)", color: C.mid, margin: "0 0 12px", lineHeight: 1.5 }}>
+              웹 접근성과 문서화를 중시하고,
+            </p>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 300, fontSize: "clamp(16px,2vw,22px)", color: C.mid, margin: "0 0 20px", lineHeight: 1.5 }}>
+              글로벌 프로젝트 경험을 가진
+            </p>
+
+            {/* Name */}
+            <h1 style={{ margin: "0 0 32px" }}>
+              <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(32px,6vw,64px)", color: C.white, display: "block", letterSpacing: 2, lineHeight: 1.3 }}>추송림</span>
+              <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(12px,1.8vw,18px)", color: C.accent, display: "block", marginTop: 12, letterSpacing: "0.08em" }}>CHU SONGRIM</span>
+            </h1>
+
+            {/* Info strip */}
+            <div style={{ display: "flex", gap: 24, alignItems: "center", marginBottom: 36, flexWrap: "wrap" }}>
+              {[
+                { label: "2001.03.09" },
+                { label: "010-6613-5660" },
+                { label: "srimm3399@gmail.com" },
+              ].map((item) => (
+                <span key={item.label} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: C.dim }}>{item.label}</span>
+              ))}
+            </div>
+
+            {/* CTAs */}
+            <div style={{ display: "flex", gap: 14 }}>
+              <button onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })} style={{
+                fontFamily: "'Press Start 2P', monospace", fontSize: 9, color: C.bg,
+                background: C.accent, border: "none", padding: "14px 26px", cursor: "pointer", transition: "opacity 0.2s",
+              }}
+                onMouseEnter={e => e.target.style.opacity = "0.8"}
+                onMouseLeave={e => e.target.style.opacity = "1"}>
+                ▶ VIEW QUESTS
+              </button>
+              <button onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })} style={{
+                fontFamily: "'Press Start 2P', monospace", fontSize: 9, color: C.accent,
+                background: "transparent", border: `2px solid ${C.accent}`, padding: "14px 26px", cursor: "pointer", transition: "all 0.2s",
+              }}
+                onMouseEnter={e => { e.currentTarget.style.background = `${C.accent}18`; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "transparent"; }}>
+                ✉ CONTACT
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* Main title */}
-        <div style={{ opacity: showMain ? 1 : 0, transform: showMain ? "none" : "translateY(20px)", transition: "all 0.8s ease" }}>
-
-          {/* Zone badge */}
-          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 28 }}>
-            <span style={{ ...PX(9, C.bg), background: C.accent, padding: "5px 10px" }}>◈ ZONE 01</span>
-            <span style={{ ...PX(9, C.dim) }}>SPAWN POINT</span>
+        {/* ── RIGHT ── */}
+        <div style={{ opacity: showMain ? 1 : 0, transition: "all 1s ease 0.3s" }}>
+          {/* CURRENTLY */}
+          <div style={{ marginBottom: 32 }}>
+            <p style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 9, color: C.dim, letterSpacing: "0.15em", margin: "0 0 14px" }}>CURRENTLY</p>
+            <p style={{ margin: "0 0 10px" }}>
+              <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 16, color: C.white }}>Frontend Dev</span>
+              <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 11, color: C.dim, marginLeft: 12 }}>Freelance</span>
+            </p>
+            <p style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 12, color: C.accent, margin: "0 0 4px", lineHeight: 2 }}>@ 아이티센 글로벌<br/>· 아이티센 재팬</p>
+            <p style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 9, color: C.dim }}>2024.10 — PRESENT</p>
           </div>
 
-          {/* Name */}
-          <h1 style={{ ...PX(0), margin: "0 0 8px" }}>
-            <span style={{ ...PX("clamp(36px,7vw,72px)", C.white), display: "block", letterSpacing: 2 }}>추송림</span>
-            <span style={{ ...PX("clamp(18px,3.5vw,34px)", C.purple), display: "block", marginTop: 10 }}>CHU SONGRIM</span>
-          </h1>
+          {/* Divider */}
+          <div style={{ height: 1, background: C.border, marginBottom: 28 }} />
 
-          {/* Stat bars */}
-          <div style={{ margin: "36px 0", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, maxWidth: 560 }}>
+          {/* FOCUS */}
+          <div>
+            <p style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 9, color: C.dim, letterSpacing: "0.15em", margin: "0 0 16px" }}>FOCUS</p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+              {["React", "TypeScript", "Vue.js", "Angular", "웹 접근성", "글로벌 프로젝트"].map(f => (
+                <span key={f} style={{
+                  fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: C.mid,
+                  border: `1px solid ${C.border2}`, padding: "6px 14px", borderRadius: 0,
+                  background: "transparent",
+                }}>{f}</span>
+              ))}
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div style={{ height: 1, background: C.border, margin: "28px 0" }} />
+
+          {/* STAT */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
             {[
-              { label: "CLASS", val: "FRONTEND DEV", color: C.accent },
-              { label: "LVL", val: "1YR 8MO EXP", color: C.yellow },
-              { label: "STATUS", val: "● ACTIVE / HIRING", color: "#4ade80" },
-              { label: "GUILD", val: "CURRENTLY EMPLOYED", color: C.blue },
+              { label: "EXP", val: "1YR 8MO", color: C.accent },
+              { label: "STATUS", val: "● HIRING", color: "#4ade80" },
             ].map(s => (
-              <div key={s.label} style={{ background: C.panel, border: `1px solid ${C.border}`, padding: "10px 14px" }}>
-                <div style={{ ...PX(8, C.dim), marginBottom: 5 }}>{s.label}</div>
-                <div style={{ ...PX(8, s.color) }}>{s.val}</div>
+              <div key={s.label} style={{ background: C.panel, border: `1px solid ${C.border}`, padding: "12px 16px" }}>
+                <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: C.dim, marginBottom: 6 }}>{s.label}</div>
+                <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 9, color: s.color }}>{s.val}</div>
               </div>
             ))}
-          </div>
-
-          {/* Dialog / tagline */}
-          <DialogBox lines={[
-            "사용자의 경험을 설계하고, 픽셀 하나하나에 의도를 담는 개발자입니다.",
-            "안정적인 코드와 아름다운 인터페이스 사이에서 균형을 찾습니다.",
-          ]} />
-
-          {/* CTAs */}
-          <div style={{ display: "flex", gap: 14, marginTop: 36 }}>
-            <button onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })} style={{
-              ...PX(9, C.bg), background: C.accent, border: "none",
-              padding: "14px 26px", cursor: "pointer",
-              transition: "opacity 0.2s",
-            }}
-              onMouseEnter={e => e.target.style.opacity = "0.8"}
-              onMouseLeave={e => e.target.style.opacity = "1"}>
-              ▶ VIEW QUESTS
-            </button>
-            <button onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })} style={{
-              ...PX(9, C.accent), background: "transparent",
-              border: `2px solid ${C.accent}`,
-              padding: "14px 26px", cursor: "pointer",
-              transition: "all 0.2s",
-            }}
-              onMouseEnter={e => { e.currentTarget.style.background = `${C.accent}18`; }}
-              onMouseLeave={e => { e.currentTarget.style.background = "transparent"; }}>
-              ✉ CONTACT
-            </button>
           </div>
         </div>
       </div>
 
       {/* Scroll */}
       <div style={{ position: "absolute", bottom: 28, left: "50%", transform: "translateX(-50%)", textAlign: "center" }}>
-        <div style={{ ...PX(8, C.dim) }}>▼ SCROLL</div>
+        <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 8, color: C.dim }}>▼ SCROLL</div>
       </div>
     </section>
   );
@@ -345,9 +381,9 @@ function AboutSection() {
           <PixelBox glowColor={C.purple}>
             <div style={{ ...PX(8, C.purple), marginBottom: 16 }}>◆ PROFILE</div>
             {[
-              "안녕하세요! 현재 프론트엔드 개발자로 1년 8개월째 재직 중인 추송림입니다.",
-              "HTML/CSS 마크업부터 React, Vue.js를 활용한 SPA 개발까지 사용자 중심의 인터페이스를 구현합니다. 웹 접근성과 예외처리, 안정적인 상태 관리를 중요하게 생각합니다.",
-              "현재 Flutter, Spring 등 새로운 기술을 공부하며 더 넓은 시야를 가진 개발자로 성장 중입니다.",
+              "안녕하세요! 글로벌 프로젝트 경험을 가진 프론트엔드 개발자 추송림입니다.",
+              "HTML/CSS 마크업부터 React·Vue.js 기반 SPA 개발, Angular를 활용한 음성 인식 UI 시스템까지 경험했습니다. 웹 접근성 준수, 꼼꼼한 예외처리, 기능 흐름 문서화를 통해 팀 전체의 유지보수 효율을 높이는 개발자입니다.",
+              "현재 Java, Python 등 새로운 기술을 공부하며 더 넓은 시야를 가진 개발자로 성장 중입니다.",
             ].map((t, i) => (
               <p key={i} style={{ ...BODY(16), margin: i < 2 ? "0 0 14px" : 0 }}>{t}</p>
             ))}
@@ -391,13 +427,13 @@ const SKILLS = {
     { name: "Vue.js", lv: 75, tier: "A" },
     { name: "Next.js", lv: 60, tier: "B" },
     { name: "Tailwind CSS", lv: 80, tier: "A" },
-    { name: "Angular", lv: 65, tier: "B" },
+    { name: "Angular", lv: 55, tier: "C" },
   ],
   "◈ ARMOR": [
     { name: "jQuery / jQuery UI", lv: 85, tier: "A" },
     { name: "Bootstrap / SASS", lv: 82, tier: "A" },
     { name: "React Query", lv: 75, tier: "B" },
-    { name: "Figma / Adobe XD", lv: 78, tier: "B" },
+    { name: "Figma / Adobe XD", lv: 82, tier: "A" },
     { name: "Photoshop / Illustrator", lv: 72, tier: "B" },
     { name: "Firebase", lv: 65, tier: "B" },
     { name: "Three.js", lv: 40, tier: "C" },
@@ -410,7 +446,7 @@ const SKILLS = {
     { name: "Laravel", lv: 40, tier: "C" },
     { name: "AWS", lv: 45, tier: "C" },
     { name: "Linux / Apache", lv: 50, tier: "C" },
-    { name: "C++ / Java", lv: 35, tier: "C" },
+    { name: "C++", lv: 38, tier: "C" },
   ],
 };
 
@@ -455,7 +491,7 @@ function SkillsSection() {
               onMouseEnter={e => e.currentTarget.style.borderColor = TIER_COLOR[s.tier]}
               onMouseLeave={e => e.currentTarget.style.borderColor = C.border}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-                <span style={{ ...BODY(13, C.white), fontWeight: 500 }}>{s.name}</span>
+                <span style={{ ...BODY(15, C.white), fontWeight: 500 }}>{s.name}</span>
                 <span style={{ ...PX(9, C.bg), background: TIER_COLOR[s.tier], padding: "2px 7px" }}>
                   {s.tier}
                 </span>
@@ -476,7 +512,7 @@ function SkillsSection() {
         <div style={{ marginTop: 28, background: C.card, border: `1px solid ${C.border}`, padding: "14px 20px", display: "flex", alignItems: "center", gap: 16 }}>
           <span style={{ ...PX(8, C.accent) }}>► LEARNING</span>
           <div style={{ width: 1, height: 14, background: C.border }} />
-          <span style={{ ...BODY(13, C.mid) }}>Flutter &nbsp;·&nbsp; Spring &nbsp;·&nbsp; Spring Boot</span>
+          <span style={{ ...BODY(13, C.mid) }}>Java &nbsp;·&nbsp; Python</span>
         </div>
       </div>
     </section>
@@ -491,67 +527,79 @@ const PROJECTS = [
     id: 1, num: "QUEST 01",
     title: "신칸센 티켓 발매 키오스크",
     sub: "Voice Command UI System",
+    period: "2024.10 — 현재",
     type: "MAIN QUEST", typeColor: C.accent,
     desc: "일본 신칸센 티켓 발권 키오스크의 음성 명령 기반 UI 시스템 개발에 참여했습니다. 음성 인식 결과를 화면 로직에 반영하고 발권 단계별 상태 흐름을 제어하는 기능을 구현했습니다.",
     role: ["음성 명령 ↔ 기능 매핑 로직 설계", "예외 처리 및 상태 제어 로직 보완", "오류 로그 분석 및 기능 연동 테스트", "이벤트 흐름 처리 구조 문서화"],
     stacks: ["Angular", "TypeScript", "JavaScript", "C++", "Java", "HTML", "CSS"],
     reward: "음성 기반 UI 안정성 향상",
-    github: "",
+    github: "private",
+    demo: "",
   },
   {
     id: 2, num: "QUEST 02",
     title: "딥러닝캥거루 LMS",
     sub: "Admin Ver. — 관리자 페이지",
+    period: "2024.04 — 2024.05",
     type: "PARTY QUEST", typeColor: C.yellow,
     desc: "LMS 학습 쇼핑몰의 관리자 페이지입니다. 상품·회원·주문 데이터를 한눈에 파악하고 제어할 수 있는 대시보드와 관리 기능을 구현했습니다.",
     role: ["관리자 대시보드 UI 설계 및 구현", "상품·회원·주문 CRUD 기능 개발", "Figma 기반 디자인 시스템 적용", "PHP + MySQL 연동 데이터 처리"],
     stacks: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "jQuery", "Bootstrap", "Figma"],
     reward: "어드민 운영 효율 개선",
-    github: "",
+    github: "https://github.com/aengkrrrrr/clean_kangaroo",
+    demo: "http://srimm3399.dothome.co.kr/clean_kangaroo/admin/login/login.php",
   },
   {
     id: 3, num: "QUEST 02-B",
     title: "딥러닝캥거루 LMS",
     sub: "User Ver. — 사용자 페이지",
+    period: "2024.04 — 2024.05",
     type: "PARTY QUEST", typeColor: C.yellow,
     desc: "동일 LMS 프로젝트의 사용자 페이지입니다. 강의 탐색·수강신청·결제 플로우와 학습 진도 확인 기능을 구현했으며, 사용자 경험을 최우선으로 고려했습니다.",
     role: ["강의 목록·상세 페이지 UI 구현", "수강신청 및 결제 플로우 설계", "학습 진도 표시 기능 구현", "반응형 레이아웃 및 접근성 적용"],
     stacks: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "jQuery", "Bootstrap", "Figma"],
     reward: "사용자 구매 전환율 향상",
-    github: "",
+    github: "https://github.com/aengkrrrrr/clean_kangaroo",
+    demo: "http://srimm3399.dothome.co.kr/clean_kangaroo/",
   },
   {
     id: 4, num: "QUEST 03",
     title: "쪽지시험 테스트 플랫폼",
     sub: "Quiz Platform for Teachers & Students",
+    period: "2026.03 — 2026.04",
     type: "VIBE QUEST", typeColor: C.purple,
     desc: "실제 학생들의 일일 테스트를 위해 제작된 시험 플랫폼입니다. 교사용과 학생용 모드를 분리하여 실시간 연동 시스템을 구축했습니다.",
     role: ["교사용 / 학생용 UI 분리 설계", "Firebase 실시간 DB 연동", "시험 생성 및 채점 로직 구현", "React 기반 SPA 구조 설계"],
     stacks: ["React", "Firebase", "GitHub", "FileZilla"],
     reward: "실시간 시험 운영 자동화",
-    github: "",
+    github: "https://github.com/aengkrrrrr/history-quiz-app",
+    demo: "https://jinmin.dothome.co.kr/",
   },
   {
     id: 5, num: "QUEST 04",
     title: "미래에셋그룹 리뉴얼",
     sub: "Corporate Website Redesign",
+    period: "2024.03 — 2024.04",
     type: "PARTY QUEST", typeColor: C.yellow,
     desc: "시멘틱 태그와 웹 접근성을 준수하여 기획부터 디자인까지 새롭게 리뉴얼한 PC 반응형 사이트입니다.",
     role: ["기획 및 와이어프레임 설계", "Figma 디자인 시스템 구축", "시멘틱 HTML 마크업", "웹 접근성 준수 (WCAG)", "PC 반응형 레이아웃"],
     stacks: ["HTML", "CSS", "JavaScript", "jQuery", "Bootstrap", "Figma", "Photoshop"],
     reward: "UI/UX 품질 향상",
-    github: "",
+    github: "https://github.com/aengkrrrrr/Team_Dongdongju",
+    demo: "http://srimm3399.dothome.co.kr/miraeesset/index.html",
   },
   {
     id: 6, num: "QUEST 05",
     title: "롯데웰푸드 클론코딩",
     sub: "Responsive Website Clone",
+    period: "2023.04",
     type: "SOLO QUEST", typeColor: C.blue,
     desc: "시멘틱 태그와 웹 접근성을 준수하여 롯데웰푸드 사이트를 클론 코딩한 PC 반응형 사이트입니다.",
     role: ["시멘틱 HTML 마크업", "웹 접근성 준수", "PC 반응형 레이아웃 구현", "CSS 애니메이션 구현"],
     stacks: ["HTML", "CSS", "JavaScript", "jQuery", "Bootstrap", "Figma", "Photoshop"],
     reward: "마크업 역량 강화",
-    github: "",
+    github: "https://github.com/aengkrrrrr/lottewellfood",
+    demo: "http://srimm3399.dothome.co.kr/lottewelfood/index.html",
   },
 ];
 
@@ -572,7 +620,10 @@ function QuestCard({ p, index }) {
 
         {/* Top bar */}
         <div style={{ background: C.panel, padding: "12px 20px", display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: `1px solid ${C.border}` }}>
-          <span style={{ ...PX(7, C.dim) }}>{p.num}</span>
+          <div style={{ display:"flex", flexDirection:"column", gap:5 }}>
+            <span style={{ ...PX(7, C.dim) }}>{p.num}</span>
+            {p.period && <span style={{ fontFamily:"'Press Start 2P',monospace", fontSize:7, color:C.dim }}>{p.period}</span>}
+          </div>
           <span style={{ ...PX(7, C.bg), background: p.typeColor, padding: "3px 10px" }}>{p.type}</span>
         </div>
 
@@ -615,10 +666,39 @@ function QuestCard({ p, index }) {
                 <span key={s} style={{ ...PX(7, C.dim), border: `1px solid ${C.border}`, padding: "3px 8px" }}>{s}</span>
               ))}
             </div>
-            <a href={p.github || "#"} onClick={e => !p.github && e.preventDefault()} target="_blank" rel="noreferrer"
-              style={{ ...PX(7, p.github ? C.accent : C.dim), textDecoration: "none", opacity: p.github ? 1 : 0.3 }}>
-              [GITHUB →]
-            </a>
+            <div style={{ display: "flex", gap: 8 }}>
+              {/* Demo button */}
+              <a href={p.demo || "#"} onClick={e => !p.demo && e.preventDefault()} target="_blank" rel="noreferrer"
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: 7,
+                  textDecoration: "none",
+                  background: p.demo ? p.typeColor : "transparent",
+                  border: `2px solid ${p.demo ? p.typeColor : C.border}`,
+                  padding: "8px 16px",
+                  opacity: p.demo ? 1 : 0.25,
+                  transition: "opacity 0.2s",
+                }}
+                onMouseEnter={e => { if(p.demo) e.currentTarget.style.opacity="0.7"; }}
+                onMouseLeave={e => { if(p.demo) e.currentTarget.style.opacity="1"; }}>
+                <span style={{ fontFamily:"'Press Start 2P',monospace", fontSize:9, color: p.demo ? "#0d0f1a" : "rgba(232,234,240,0.28)" }}>▶ DEMO</span>
+              </a>
+              {/* GitHub button */}
+              <a href={p.github && p.github !== "private" ? p.github : "#"} onClick={e => (!p.github || p.github === "private") && e.preventDefault()} target="_blank" rel="noreferrer"
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: 7,
+                  textDecoration: "none",
+                  background: "transparent",
+                  border: `2px solid ${p.github && p.github !== "private" ? C.border2 : C.border}`,
+                  padding: "8px 16px",
+                  opacity: p.github ? 1 : 0.25,
+                  transition: "all 0.2s",
+                }}
+                onMouseEnter={e => { if(p.github) { e.currentTarget.style.borderColor=p.typeColor; e.currentTarget.style.opacity="0.8"; } }}
+                onMouseLeave={e => { if(p.github) { e.currentTarget.style.borderColor=C.border2; e.currentTarget.style.opacity="1"; } }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill={p.github && p.github !== "private" ? "rgba(232,234,240,0.7)" : "rgba(232,234,240,0.28)"}><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <span style={{ fontFamily:"'Press Start 2P',monospace", fontSize:9, color: p.github && p.github !== "private" ? "rgba(232,234,240,0.7)" : "rgba(232,234,240,0.28)" }}>{p.github === "private" ? "🔒 PRIVATE" : "GITHUB"}</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -656,6 +736,95 @@ function ProjectsSection() {
 /* ═══════════════════════════════════════════════════════════ */
 /*  CONTACT — GUILD                                            */
 /* ═══════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════ */
+/*  AWARDS — ACHIEVEMENT LOG                                    */
+/* ═══════════════════════════════════════════════════════════ */
+const AWARDS = [
+  {
+    date: "2024.06",
+    title: "★ K-job Star 프로젝트 최우수팀",
+    org: "서울지방고용노동부",
+    color: C.yellow,
+    icon: "★",
+    desc: "그린컴퓨터아카데미 SW개발자 양성과정 수강생들이 약 25명의 실무 현업자들이 모인 서울고용노동부센터에서 각 팀별로 LMS 쇼핑몰 사이트를 발표하여 최우수상을 수상했습니다.",
+  },
+  {
+    date: "2024.05",
+    title: "3차 팀 프로젝트 최우수팀",
+    org: "그린컴퓨터아카데미",
+    color: C.accent,
+    icon: "◈",
+    desc: "3차 팀 프로젝트 발표에서 팀 최우수상을 수상했습니다.",
+  },
+  {
+    date: "2024.05",
+    title: "3차 팀 프로젝트 협업최우수 팀원",
+    org: "그린컴퓨터아카데미",
+    color: C.purple,
+    icon: "♟",
+    desc: "3차 팀 프로젝트에서 협업 역량을 인정받아 협업최우수 팀원으로 선정되었습니다.",
+  },
+  {
+    date: "2024.04",
+    title: "2차 팀 프로젝트 최우수팀",
+    org: "그린컴퓨터아카데미",
+    color: C.accent,
+    icon: "◈",
+    desc: "2차 팀 프로젝트 발표에서 팀 최우수상을 수상했습니다.",
+  },
+  {
+    date: "2024.04",
+    title: "2차 팀 프로젝트 협업최우수 팀원",
+    org: "그린컴퓨터아카데미",
+    color: C.purple,
+    icon: "♟",
+    desc: "2차 팀 프로젝트에서 협업 역량을 인정받아 협업최우수 팀원으로 선정되었습니다.",
+  },
+];
+
+function AwardsSection() {
+  const [ref, inView] = useInView();
+  return (
+    <section id="awards" ref={ref} style={{ background: C.panel, padding: "100px 2rem" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+        <div style={{ opacity: inView ? 1 : 0, transform: inView ? "none" : "translateY(24px)", transition: "all 0.7s ease", marginBottom: 56 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 16 }}>
+            <span style={{ ...PX(9, C.bg), background: C.yellow, padding: "5px 10px" }}>◈ ZONE 06</span>
+            <div style={{ flex: 1, height: 1, background: C.border }} />
+          </div>
+          <h2 style={{ ...PX("clamp(20px,3.5vw,36px)", C.white), margin: 0 }}>ACHIEVEMENT LOG</h2>
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 16 }}>
+          {AWARDS.map((a, i) => (
+            <div key={i} style={{
+              background: C.card, border: `1px solid ${C.border}`,
+              opacity: inView ? 1 : 0,
+              transform: inView ? "none" : "translateY(24px)",
+              transition: `all 0.7s ease ${i * 80}ms`,
+            }}
+              onMouseEnter={e => e.currentTarget.style.borderColor = a.color}
+              onMouseLeave={e => e.currentTarget.style.borderColor = C.border}>
+              <div style={{ background: C.panel, padding: "12px 20px", borderBottom: `1px solid ${C.border}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <span style={{ ...PX(7, a.color) }}>{a.date}</span>
+                <span style={{ ...PX(14, a.color) }}>{a.icon}</span>
+              </div>
+              <div style={{ padding: "20px" }}>
+                <h3 style={{ ...PX("clamp(10px,1.4vw,12px)", C.white), margin: "0 0 10px", lineHeight: 1.8 }}>{a.title}</h3>
+                <div style={{ display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 14, background: `${a.color}18`, border: `1px solid ${a.color}44`, padding: "3px 10px" }}>
+                  <span style={{ ...PX(7, a.color) }}>{a.org}</span>
+                </div>
+                <p style={{ ...BODY(13), margin: 0 }}>{a.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ContactSection() {
   const [ref, inView] = useInView();
   const contacts = [
@@ -707,7 +876,7 @@ const EXPERIENCE = [
     id: 1,
     company: "아이티센 글로벌 · 아이티센 재팬",
     team: "글로벌서비스팀",
-    role: "Web Developer & QA Engineer",
+    role: "Web Developer & QA Engineer (프리랜서 · 용역계약)",
     period: "2024.10 — 현재",
     color: C.accent,
     icon: "◈",
@@ -926,9 +1095,9 @@ export default function Portfolio() {
       <SkillsSection />
       <ExperienceSection />
       <ProjectsSection />
+      <AwardsSection />
       <ContactSection />
       <Footer />
     </div>
   );
 }
- 
