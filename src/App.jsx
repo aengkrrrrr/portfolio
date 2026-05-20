@@ -548,6 +548,7 @@ const PROJECTS = [
     reward: "어드민 운영 효율 개선",
     github: "https://github.com/aengkrrrrr/clean_kangaroo",
     demo: "http://srimm3399.dothome.co.kr/clean_kangaroo/admin/login/login.php",
+    figma: "https://www.figma.com/design/y3L7Q49u1w3kv0DhYzyMOd/%EA%B9%A8%EB%81%97%ED%95%9C-%EC%95%84%EA%B8%B0-%EC%BA%A5%EA%B1%B0%EB%A3%A8%F0%9F%A6%98?node-id=0-1&p=f",
   },
   {
     id: 3, num: "QUEST 02-B",
@@ -561,6 +562,7 @@ const PROJECTS = [
     reward: "사용자 구매 전환율 향상",
     github: "https://github.com/aengkrrrrr/clean_kangaroo",
     demo: "http://srimm3399.dothome.co.kr/clean_kangaroo/",
+    figma: "https://www.figma.com/design/y3L7Q49u1w3kv0DhYzyMOd/%EA%B9%A8%EB%81%97%ED%95%9C-%EC%95%84%EA%B8%B0-%EC%BA%A5%EA%B1%B0%EB%A3%A8%F0%9F%A6%98?node-id=0-1&p=f",
   },
   {
     id: 4, num: "QUEST 03",
@@ -587,6 +589,7 @@ const PROJECTS = [
     reward: "UI/UX 품질 향상",
     github: "https://github.com/aengkrrrrr/Team_Dongdongju",
     demo: "http://srimm3399.dothome.co.kr/miraeesset/index.html",
+    figma: "https://www.figma.com/design/B29YGmx5bifWmJydk9flhv/2%EC%B0%A8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%8F%99%EB%8F%99%EC%A3%BC?node-id=0-1&p=f",
   },
   {
     id: 6, num: "QUEST 05",
@@ -667,6 +670,29 @@ function QuestCard({ p, index }) {
               ))}
             </div>
             <div style={{ display: "flex", gap: 8 }}>
+              {/* Figma button */}
+              {p.figma && (
+                <a href={p.figma} target="_blank" rel="noreferrer"
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: 7,
+                    textDecoration: "none",
+                    background: "transparent",
+                    border: "2px solid #a259ff",
+                    padding: "8px 14px",
+                    transition: "opacity 0.2s",
+                  }}
+                  onMouseEnter={e => e.currentTarget.style.opacity="0.7"}
+                  onMouseLeave={e => e.currentTarget.style.opacity="1"}>
+                  <svg width="14" height="14" viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 28.5C19 25.9804 20.0009 23.5641 21.7825 21.7825C23.5641 20.0009 25.9804 19 28.5 19C31.0196 19 33.4359 20.0009 35.2175 21.7825C36.9991 23.5641 38 25.9804 38 28.5C38 31.0196 36.9991 33.4359 35.2175 35.2175C33.4359 36.9991 31.0196 38 28.5 38C25.9804 38 23.5641 36.9991 21.7825 35.2175C20.0009 33.4359 19 31.0196 19 28.5Z" fill="#1ABCFE"/>
+                    <path d="M0 47.5C0 44.9804 1.00089 42.5641 2.78249 40.7825C4.56408 39.0009 6.98044 38 9.5 38H19V47.5C19 50.0196 17.9991 52.4359 16.2175 54.2175C14.4359 55.9991 12.0196 57 9.5 57C6.98044 57 4.56408 55.9991 2.78249 54.2175C1.00089 52.4359 0 50.0196 0 47.5Z" fill="#0ACF83"/>
+                    <path d="M19 0V19H28.5C31.0196 19 33.4359 17.9991 35.2175 16.2175C36.9991 14.4359 38 12.0196 38 9.5C38 6.98044 36.9991 4.56408 35.2175 2.78249C33.4359 1.00089 31.0196 0 28.5 0H19Z" fill="#FF7262"/>
+                    <path d="M0 9.5C0 12.0196 1.00089 14.4359 2.78249 16.2175C4.56408 17.9991 6.98044 19 9.5 19H19V0H9.5C6.98044 0 4.56408 1.00089 2.78249 2.78249C1.00089 4.56408 0 6.98044 0 9.5Z" fill="#FF3131"/>
+                    <path d="M0 28.5C0 31.0196 1.00089 33.4359 2.78249 35.2175C4.56408 36.9991 6.98044 38 9.5 38H19V19H9.5C6.98044 19 4.56408 20.0009 2.78249 21.7825C1.00089 23.5641 0 25.9804 0 28.5Z" fill="#A259FF"/>
+                  </svg>
+                  <span style={{ fontFamily:"'Press Start 2P',monospace", fontSize:9, color: "#a259ff" }}>FIGMA</span>
+                </a>
+              )}
               {/* Demo button */}
               <a href={p.demo || "#"} onClick={e => !p.demo && e.preventDefault()} target="_blank" rel="noreferrer"
                 style={{
@@ -1061,7 +1087,7 @@ function Footer() {
 /* ═══════════════════════════════════════════════════════════ */
 /*  ROOT                                                        */
 /* ═══════════════════════════════════════════════════════════ */
-export default function Portfolio() {
+export function Portfolio() {
   const [active, setActive] = useState("home");
 
   useEffect(() => {
