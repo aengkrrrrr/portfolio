@@ -547,8 +547,8 @@ const PROJECTS = [
     stacks: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "jQuery", "Bootstrap", "Figma"],
     reward: "어드민 운영 효율 개선",
     github: "https://github.com/aengkrrrrr/clean_kangaroo",
-    demo: "http://srimm3399.dothome.co.kr/clean_kangaroo/admin/login/login.php",
     figma: "https://www.figma.com/design/y3L7Q49u1w3kv0DhYzyMOd/%EA%B9%A8%EB%81%97%ED%95%9C-%EC%95%84%EA%B8%B0-%EC%BA%A5%EA%B1%B0%EB%A3%A8%F0%9F%A6%98?node-id=0-1&p=f",
+    demo: "http://srimm3399.dothome.co.kr/clean_kangaroo/admin/login/login.php",
   },
   {
     id: 3, num: "QUEST 02-B",
@@ -561,8 +561,8 @@ const PROJECTS = [
     stacks: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "jQuery", "Bootstrap", "Figma"],
     reward: "사용자 구매 전환율 향상",
     github: "https://github.com/aengkrrrrr/clean_kangaroo",
-    demo: "http://srimm3399.dothome.co.kr/clean_kangaroo/",
     figma: "https://www.figma.com/design/y3L7Q49u1w3kv0DhYzyMOd/%EA%B9%A8%EB%81%97%ED%95%9C-%EC%95%84%EA%B8%B0-%EC%BA%A5%EA%B1%B0%EB%A3%A8%F0%9F%A6%98?node-id=0-1&p=f",
+    demo: "http://srimm3399.dothome.co.kr/clean_kangaroo/",
   },
   {
     id: 4, num: "QUEST 03",
@@ -588,8 +588,8 @@ const PROJECTS = [
     stacks: ["HTML", "CSS", "JavaScript", "jQuery", "Bootstrap", "Figma", "Photoshop"],
     reward: "UI/UX 품질 향상",
     github: "https://github.com/aengkrrrrr/Team_Dongdongju",
-    demo: "http://srimm3399.dothome.co.kr/miraeesset/index.html",
     figma: "https://www.figma.com/design/B29YGmx5bifWmJydk9flhv/2%EC%B0%A8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%8F%99%EB%8F%99%EC%A3%BC?node-id=0-1&p=f",
+    demo: "http://srimm3399.dothome.co.kr/miraeesset/index.html",
   },
   {
     id: 6, num: "QUEST 05",
