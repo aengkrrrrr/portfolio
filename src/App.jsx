@@ -572,10 +572,10 @@ const PROJECTS = [
     type: "VIBE QUEST", typeColor: C.purple,
     desc: "실제 학생들의 일일 테스트를 위해 제작된 시험 플랫폼입니다. 교사용과 학생용 모드를 분리하여 실시간 연동 시스템을 구축했습니다.",
     role: ["교사용 / 학생용 UI 분리 설계", "Firebase 실시간 DB 연동", "시험 생성 및 채점 로직 구현", "React 기반 SPA 구조 설계"],
-    stacks: ["React", "Firebase", "GitHub", "FileZilla"],
+    stacks: ["React", "Firebase", "GitHub", "Vercel"],
     reward: "실시간 시험 운영 자동화",
     github: "https://github.com/aengkrrrrr/history-quiz-app",
-    demo: "https://jinmin.dothome.co.kr/",
+    demo: "https://history-quiz-app-lemon.vercel.app/,
   },
   {
     id: 5, num: "QUEST 04",
