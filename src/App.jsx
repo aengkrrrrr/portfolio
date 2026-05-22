@@ -1089,7 +1089,7 @@ function Footer() {
 /* ═══════════════════════════════════════════════════════════ */
 /*  ROOT                                                        */
 /* ═══════════════════════════════════════════════════════════ */
-export function Portfolio() {
+export default function Portfolio() {
   const [active, setActive] = useState("home");
 
   useEffect(() => {
