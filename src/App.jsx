@@ -547,8 +547,8 @@ const PROJECTS = [
     stacks: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "jQuery", "Bootstrap", "Figma"],
     reward: "어드민 운영 효율 개선",
     github: "https://github.com/aengkrrrrr/clean_kangaroo",
-    figma: "https://www.figma.com/design/y3L7Q49u1w3kv0DhYzyMOd/%EA%B9%A8%EB%81%97%ED%95%9C-%EC%95%84%EA%B8%B0-%EC%BA%A5%EA%B1%B0%EB%A3%A8%F0%9F%A6%98?node-id=0-1&p=f",
     demo: "http://srimm3399.dothome.co.kr/clean_kangaroo/admin/login/login.php",
+    figma: "https://www.figma.com/design/y3L7Q49u1w3kv0DhYzyMOd/%EA%B9%A8%EB%81%97%ED%95%9C-%EC%95%84%EA%B8%B0-%EC%BA%A5%EA%B1%B0%EB%A3%A8%F0%9F%A6%98?node-id=0-1&p=f",
   },
   {
     id: 3, num: "QUEST 02-B",
@@ -561,8 +561,8 @@ const PROJECTS = [
     stacks: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "jQuery", "Bootstrap", "Figma"],
     reward: "사용자 구매 전환율 향상",
     github: "https://github.com/aengkrrrrr/clean_kangaroo",
-    figma: "https://www.figma.com/design/y3L7Q49u1w3kv0DhYzyMOd/%EA%B9%A8%EB%81%97%ED%95%9C-%EC%95%84%EA%B8%B0-%EC%BA%A5%EA%B1%B0%EB%A3%A8%F0%9F%A6%98?node-id=0-1&p=f",
     demo: "http://srimm3399.dothome.co.kr/clean_kangaroo/",
+    figma: "https://www.figma.com/design/y3L7Q49u1w3kv0DhYzyMOd/%EA%B9%A8%EB%81%97%ED%95%9C-%EC%95%84%EA%B8%B0-%EC%BA%A5%EA%B1%B0%EB%A3%A8%F0%9F%A6%98?node-id=0-1&p=f",
   },
   {
     id: 4, num: "QUEST 03",
@@ -572,10 +572,10 @@ const PROJECTS = [
     type: "VIBE QUEST", typeColor: C.purple,
     desc: "실제 학생들의 일일 테스트를 위해 제작된 시험 플랫폼입니다. 교사용과 학생용 모드를 분리하여 실시간 연동 시스템을 구축했습니다.",
     role: ["교사용 / 학생용 UI 분리 설계", "Firebase 실시간 DB 연동", "시험 생성 및 채점 로직 구현", "React 기반 SPA 구조 설계"],
-    stacks: ["React", "Firebase", "GitHub", "Vercel"],
+    stacks: ["React", "Firebase", "GitHub", "FileZilla"],
     reward: "실시간 시험 운영 자동화",
     github: "https://github.com/aengkrrrrr/history-quiz-app",
-    demo: "https://history-quiz-app-lemon.vercel.app/,
+    demo: "https://jinmin.dothome.co.kr/",
   },
   {
     id: 5, num: "QUEST 04",
@@ -588,8 +588,8 @@ const PROJECTS = [
     stacks: ["HTML", "CSS", "JavaScript", "jQuery", "Bootstrap", "Figma", "Photoshop"],
     reward: "UI/UX 품질 향상",
     github: "https://github.com/aengkrrrrr/Team_Dongdongju",
-    figma: "https://www.figma.com/design/B29YGmx5bifWmJydk9flhv/2%EC%B0%A8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%8F%99%EB%8F%99%EC%A3%BC?node-id=0-1&p=f",
     demo: "http://srimm3399.dothome.co.kr/miraeesset/index.html",
+    figma: "https://www.figma.com/design/B29YGmx5bifWmJydk9flhv/2%EC%B0%A8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%8F%99%EB%8F%99%EC%A3%BC?node-id=0-1&p=f",
   },
   {
     id: 6, num: "QUEST 05",
@@ -613,10 +613,12 @@ function QuestCard({ p, index }) {
     <div ref={ref} style={{
       opacity: inView ? 1 : 0, transform: inView ? "none" : "translateY(32px)",
       transition: `all 0.7s ease ${index * 80}ms`,
+      height: "100%",
     }}>
       <div style={{
         background: C.card, border: `2px solid ${C.border}`,
         transition: "border-color 0.2s", position: "relative",
+        height: "100%", display: "flex", flexDirection: "column",
       }}
         onMouseEnter={e => e.currentTarget.style.borderColor = p.typeColor}
         onMouseLeave={e => e.currentTarget.style.borderColor = C.border}>
@@ -630,7 +632,7 @@ function QuestCard({ p, index }) {
           <span style={{ ...PX(7, C.bg), background: p.typeColor, padding: "3px 10px" }}>{p.type}</span>
         </div>
 
-        <div style={{ padding: "20px" }}>
+        <div style={{ padding: "20px", flex: 1, display: "flex", flexDirection: "column" }}>
           <h3 style={{ ...PX("clamp(12px,1.8vw,16px)", C.white), margin: "0 0 4px" }}>{p.title}</h3>
           <p style={{ ...PX(7, p.typeColor), margin: "0 0 16px" }}>{p.sub}</p>
           <p style={{ ...BODY(15), margin: "0 0 16px" }}>{p.desc}</p>
@@ -751,7 +753,7 @@ function ProjectsSection() {
             ))}
           </div>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(460px, 1fr))", gap: 16 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(460px, 1fr))", gap: 16, alignItems: "stretch" }}>
           {PROJECTS.map((p, i) => <QuestCard key={p.id} p={p} index={i} />)}
         </div>
       </div>
@@ -836,7 +838,7 @@ function AwardsSection() {
                 <span style={{ ...PX(7, a.color) }}>{a.date}</span>
                 <span style={{ ...PX(14, a.color) }}>{a.icon}</span>
               </div>
-              <div style={{ padding: "20px" }}>
+              <div style={{ padding: "20px", flex: 1, display: "flex", flexDirection: "column" }}>
                 <h3 style={{ ...PX("clamp(10px,1.4vw,12px)", C.white), margin: "0 0 10px", lineHeight: 1.8 }}>{a.title}</h3>
                 <div style={{ display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 14, background: `${a.color}18`, border: `1px solid ${a.color}44`, padding: "3px 10px" }}>
                   <span style={{ ...PX(7, a.color) }}>{a.org}</span>
@@ -1087,7 +1089,7 @@ function Footer() {
 /* ═══════════════════════════════════════════════════════════ */
 /*  ROOT                                                        */
 /* ═══════════════════════════════════════════════════════════ */
-export default function Portfolio() {
+export function Portfolio() {
   const [active, setActive] = useState("home");
 
   useEffect(() => {
