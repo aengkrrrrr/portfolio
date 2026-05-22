@@ -632,7 +632,7 @@ function QuestCard({ p, index }) {
           <span style={{ ...PX(7, C.bg), background: p.typeColor, padding: "3px 10px" }}>{p.type}</span>
         </div>
 
-        <div style={{ padding: "20px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+        <div style={{ padding: "20px", flex: 1, display: "flex", flexDirection: "column" }}>
           <h3 style={{ ...PX("clamp(12px,1.8vw,16px)", C.white), margin: "0 0 4px" }}>{p.title}</h3>
           <p style={{ ...PX(7, p.typeColor), margin: "0 0 16px" }}>{p.sub}</p>
           <p style={{ ...BODY(15), margin: "0 0 16px" }}>{p.desc}</p>
@@ -838,7 +838,7 @@ function AwardsSection() {
                 <span style={{ ...PX(7, a.color) }}>{a.date}</span>
                 <span style={{ ...PX(14, a.color) }}>{a.icon}</span>
               </div>
-              <div style={{ padding: "20px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+              <div style={{ padding: "20px", flex: 1, display: "flex", flexDirection: "column" }}>
                 <h3 style={{ ...PX("clamp(10px,1.4vw,12px)", C.white), margin: "0 0 10px", lineHeight: 1.8 }}>{a.title}</h3>
                 <div style={{ display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 14, background: `${a.color}18`, border: `1px solid ${a.color}44`, padding: "3px 10px" }}>
                   <span style={{ ...PX(7, a.color) }}>{a.org}</span>
