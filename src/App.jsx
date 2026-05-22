@@ -664,13 +664,16 @@ function QuestCard({ p, index }) {
             </ul>
           )}
 
-          {/* Stacks + GitHub */}
-          <div style={{ borderTop: `1px solid ${C.border}`, paddingTop: 14, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 10 }}>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-              {p.stacks.map(s => (
-                <span key={s} style={{ ...PX(7, C.dim), border: `1px solid ${C.border}`, padding: "3px 8px" }}>{s}</span>
-              ))}
-            </div>
+          {/* Stacks */}
+          <div style={{ paddingTop: 14, display: "flex", flexWrap: "wrap", gap: 6, marginTop: "auto" }}>
+            {p.stacks.map(s => (
+              <span key={s} style={{ ...PX(7, C.dim), border: `1px solid ${C.border}`, padding: "3px 8px" }}>{s}</span>
+            ))}
+          </div>
+        </div>
+
+        {/* Buttons footer */}
+        <div style={{ borderTop: `1px solid ${C.border}`, padding: "14px 20px", display: "flex", gap: 8, flexWrap: "wrap" }}>
             <div style={{ display: "flex", gap: 8 }}>
               {/* Figma button */}
               {p.figma && (
@@ -727,7 +730,6 @@ function QuestCard({ p, index }) {
                 <span style={{ fontFamily:"'Press Start 2P',monospace", fontSize:9, color: p.github && p.github !== "private" ? "rgba(232,234,240,0.7)" : "rgba(232,234,240,0.28)" }}>{p.github === "private" ? "🔒 PRIVATE" : "GITHUB"}</span>
               </a>
             </div>
-          </div>
         </div>
       </div>
     </div>
