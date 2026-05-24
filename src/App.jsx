@@ -566,7 +566,7 @@ const PROJECTS = [
   },
   {
     id: 4, num: "QUEST 03",
-    title: "쪽지시험 테스트 플랫폼",
+    title: "쪽지시험 플랫폼",
     sub: "Quiz Platform for Teachers & Students",
     period: "2026.03 — 2026.04",
     type: "VIBE QUEST", typeColor: C.purple,
