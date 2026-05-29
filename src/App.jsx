@@ -575,7 +575,7 @@ const PROJECTS = [
     stacks: ["React", "Firebase", "GitHub", "Vercel"],
     reward: "실시간 시험 운영 자동화",
     github: "https://github.com/aengkrrrrr/history-quiz-app",
-    demo: "https://jinmin.dothome.co.kr/",
+    demo: "https://history-quiz-app-lemon.vercel.app/",
   },
   {
     id: 5, num: "QUEST 04",
