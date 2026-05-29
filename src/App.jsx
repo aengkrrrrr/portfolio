@@ -884,7 +884,7 @@ function ContactSection() {
             <div style={{ flex: 1, height: 1, background: C.border }} />
           </div>
           <h2 style={{ ...PX("clamp(20px,3.5vw,36px)", C.white), margin: "0 0 8px" }}>GUILD CONTACT</h2>
-          <p style={{ ...BODY(15), maxWidth: 440 }}>새로운 파티(팀)를 찾고 있습니다. 채용 제안이나 협업 문의를 환영합니다!</p>
+          <p style={{ ...BODY(15), maxWidth: 440, wordBreak: "keep-all" }}>새로운 파티(팀)를 찾고 있습니다. 채용 제안이나 협업 문의를 환영합니다!</p>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
