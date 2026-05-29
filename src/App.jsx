@@ -315,7 +315,7 @@ function HeroSection() {
           <div>
             <p style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 9, color: C.dim, letterSpacing: "0.15em", margin: "0 0 16px" }}>FOCUS</p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-              {["React", "TypeScript", "Vue.js", "Angular", "웹 접근성", "글로벌 프로젝트"].map(f => (
+              {["React", "JavaScript", "Vue.js", "PHP", "웹 접근성", "글로벌 프로젝트"].map(f => (
                 <span key={f} style={{
                   fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: C.mid,
                   border: `1px solid ${C.border2}`, padding: "6px 14px", borderRadius: 0,
