@@ -358,7 +358,7 @@ function AboutSection() {
   const [ref, inView] = useInView();
   const stats = [
     { label: "EXP", val: "1년 8개월", max: 100, pct: 68, color: C.accent },
-    { label: "PROJECTS", val: "6+", max: 10, pct: 60, color: C.purple },
+    { label: "PROJECTS", val: "7+", max: 10, pct: 60, color: C.purple },
     { label: "TECH STACK", val: "20+", max: 30, pct: 80, color: C.yellow },
     { label: "ACCESSIBILITY", val: "WCAG", max: 100, pct: 85, color: C.blue },
   ];
@@ -566,7 +566,7 @@ const PROJECTS = [
   },
   {
     id: 4, num: "QUEST 03",
-    title: "쪽지시험 플랫폼",
+    title: "쪽지시험 테스트 플랫폼",
     sub: "Quiz Platform for Teachers & Students",
     period: "2026.03 — 2026.04",
     type: "VIBE QUEST", typeColor: C.purple,
@@ -575,7 +575,7 @@ const PROJECTS = [
     stacks: ["React", "Firebase", "GitHub", "Vercel"],
     reward: "실시간 시험 운영 자동화",
     github: "https://github.com/aengkrrrrr/history-quiz-app",
-    demo: "https://history-quiz-app-lemon.vercel.app/",
+    demo: "https://jinmin.dothome.co.kr/",
   },
   {
     id: 5, num: "QUEST 04",
@@ -603,6 +603,19 @@ const PROJECTS = [
     reward: "마크업 역량 강화",
     github: "https://github.com/aengkrrrrr/lottewellfood",
     demo: "http://srimm3399.dothome.co.kr/lottewelfood/index.html",
+  },
+  {
+    id: 7, num: "QUEST 06",
+    title: "동물의 숲 MBTI 테스트",
+    sub: "나와 잘 맞는 주민은?",
+    period: "2026.05",
+    type: "VIBE QUEST", typeColor: C.purple,
+    desc: "동물의 숲 캐릭터들과의 MBTI 궁합을 테스트하는 인터랙티브 웹 프로젝트입니다. 카카오톡 공유 API를 연동하여 결과를 친구들과 쉽게 공유할 수 있습니다.",
+    role: ["MBTI 로직 설계 및 구현", "인터랙티브 UI 구현", "캐릭터 매칭 알고리즘 구현", "카카오톡 공유 API 연동", "GitHub Pages 배포"],
+    stacks: ["HTML", "CSS", "JavaScript", "Kakao API"],
+    reward: "인터랙티브 UI 구현 역량 강화",
+    github: "https://github.com/aengkrrrrr/aengkrrrrr.github.io",
+    demo: "https://aengkrrrrr.github.io/",
   },
 ];
 
